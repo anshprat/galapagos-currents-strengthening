@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Galápagos Dive Fitness — 12 Week Program</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,900&family=Archivo:wght@400;500;700&display=swap');
+
+  :root{
+    --abyss:#04161f;
+    --deep:#0a2733;
+    --mid:#103d4d;
+    --current:#1f7a8c;
+    --foam:#bfdbe0;
+    --sand:#e8e1d3;
+    --coral:#e8703a;
+    --kelp:#9bbf3b;
+    --paper:#f4f1e9;
+    --ink:#0a2733;
+    --muted:#5a7682;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Archivo',sans-serif;
+    background:var(--paper);
+    color:var(--ink);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:920px;margin:0 auto;padding:0 22px;}
+
+  /* HEADER */
+  header{
+    background:
+      radial-gradient(120% 80% at 80% 0%, rgba(31,122,140,.55), transparent 60%),
+      radial-gradient(90% 70% at 0% 100%, rgba(155,191,59,.18), transparent 55%),
+      linear-gradient(160deg,var(--abyss),var(--deep) 70%);
+    color:var(--foam);
+    padding:64px 0 54px;
+    position:relative;
+    overflow:hidden;
+  }
+  header::after{
+    content:"";position:absolute;inset:0;
+    background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.03) 0 1px,transparent 1px 40px);
+    pointer-events:none;
+  }
+  .kicker{
+    font-family:'Archivo';letter-spacing:.32em;text-transform:uppercase;
+    font-size:.72rem;color:var(--kelp);font-weight:700;margin-bottom:18px;
+  }
+  header h1{
+    font-family:'Fraunces';font-weight:900;font-size:clamp(2.4rem,6vw,4.2rem);
+    line-height:1.02;letter-spacing:-.02em;margin-bottom:18px;
+  }
+  header h1 em{font-style:italic;color:var(--coral);}
+  .sub{font-size:1.05rem;max-width:560px;color:var(--sand);opacity:.92;}
+  .meta-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+  .chip{
+    background:rgba(191,219,224,.1);border:1px solid rgba(191,219,224,.28);
+    padding:7px 14px;border-radius:40px;font-size:.8rem;letter-spacing:.04em;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;top:0;z-index:50;
+    background:rgba(244,241,233,.92);backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(10,39,51,.12);
+  }
+  nav .wrap{display:flex;gap:6px;overflow-x:auto;padding-top:12px;padding-bottom:12px;}
+  nav a{
+    white-space:nowrap;text-decoration:none;color:var(--mid);font-weight:500;
+    font-size:.85rem;padding:6px 14px;border-radius:30px;transition:.2s;
+  }
+  nav a:hover{background:var(--mid);color:var(--paper);}
+
+  /* SECTIONS */
+  section{padding:54px 0;border-bottom:1px solid rgba(10,39,51,.08);scroll-margin-top:60px;}
+  .eyebrow{
+    font-family:'Archivo';letter-spacing:.28em;text-transform:uppercase;
+    font-size:.7rem;color:var(--current);font-weight:700;margin-bottom:12px;
+  }
+  h2{font-family:'Fraunces';font-weight:900;font-size:clamp(1.7rem,3.6vw,2.6rem);
+    letter-spacing:-.015em;margin-bottom:8px;line-height:1.08;}
+  h3{font-family:'Fraunces';font-weight:600;font-size:1.35rem;margin:26px 0 10px;}
+  p{margin-bottom:14px;}
+  p.lead{font-size:1.08rem;color:var(--muted);max-width:680px;}
+
+  .callout{
+    background:linear-gradient(150deg,var(--deep),var(--mid));
+    color:var(--foam);border-radius:16px;padding:26px 28px;margin:24px 0;
+    border-left:5px solid var(--coral);
+  }
+  .callout h3{color:var(--sand);margin-top:0;font-family:'Fraunces';}
+  .callout strong{color:var(--coral);}
+  .callout p:last-child{margin-bottom:0;}
+
+  /* EXERCISE CARDS */
+  .ex{
+    scroll-margin-top:64px;
+    background:#fff;border:1px solid rgba(10,39,51,.1);border-radius:16px;
+    padding:24px 26px;margin:18px 0;
+    box-shadow:0 2px 0 rgba(10,39,51,.04);
+  }
+  .ex-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;}
+  .ex-head h3{margin:0;font-size:1.25rem;}
+  .tag{
+    font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+    padding:4px 10px;border-radius:30px;white-space:nowrap;
+  }
+  .tag.weights{background:var(--coral);color:#fff;}
+  .tag.calis{background:var(--kelp);color:#10300a;}
+  .tag.both{background:var(--current);color:#fff;}
+  .cue{margin:14px 0 4px;}
+  .cue strong{color:var(--current);}
+  .ex ul{margin:6px 0 14px 20px;}
+  .ex ul li{margin-bottom:5px;}
+  .prescription{
+    display:inline-block;background:var(--sand);border-radius:8px;
+    padding:6px 12px;font-size:.9rem;font-weight:700;color:var(--mid);margin-top:6px;
+  }
+  .vid{
+    display:inline-flex;align-items:center;gap:8px;text-decoration:none;
+    color:#fff;background:var(--abyss);padding:9px 16px;border-radius:10px;
+    font-size:.85rem;font-weight:700;margin-top:12px;transition:.2s;
+  }
+  .vid:hover{background:var(--current);transform:translateY(-1px);}
+  .vid::before{content:"▶";font-size:.7rem;}
+  .travel-note{
+    font-size:.85rem;color:var(--muted);background:rgba(155,191,59,.12);
+    border-radius:8px;padding:10px 14px;margin-top:12px;
+  }
+  .travel-note strong{color:#5a7a1a;}
+
+  /* SCHEDULE TABLE */
+  .tablewrap{overflow-x:auto;margin:20px 0;}
+  table{border-collapse:collapse;width:100%;font-size:.9rem;min-width:560px;}
+  th,td{text-align:left;padding:11px 14px;border-bottom:1px solid rgba(10,39,51,.1);}
+  th{background:var(--deep);color:var(--foam);font-family:'Archivo';font-weight:700;
+    letter-spacing:.04em;text-transform:uppercase;font-size:.72rem;}
+  tr:nth-child(even) td{background:rgba(31,122,140,.05);}
+  td strong{color:var(--mid);}
+  td a{color:var(--current);text-decoration:none;border-bottom:1px dotted var(--current);font-weight:500;}
+  td a:hover{color:var(--coral);border-bottom-color:var(--coral);}
+
+  .phase{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin:20px 0;}
+  .phasecard{border:1px solid rgba(10,39,51,.12);border-radius:14px;padding:18px 20px;background:#fff;}
+  .phasecard .wk{font-family:'Fraunces';font-weight:900;font-size:1.6rem;color:var(--coral);}
+  .phasecard h4{font-family:'Fraunces';font-size:1.1rem;margin:4px 0 8px;}
+  .phasecard p{font-size:.88rem;color:var(--muted);margin:0;}
+
+  /* CALENDAR / TRACKER */
+  .cal-controls{display:flex;flex-wrap:wrap;align-items:center;gap:14px;margin:18px 0 24px;}
+  .progress-wrap{flex:1;min-width:220px;}
+  .progress-bar{height:12px;background:rgba(10,39,51,.1);border-radius:20px;overflow:hidden;}
+  .progress-fill{height:100%;width:0;background:linear-gradient(90deg,var(--current),var(--kelp));transition:width .4s ease;}
+  .progress-label{font-size:.82rem;color:var(--muted);margin-top:6px;}
+  .btn-reset{background:none;border:1px solid rgba(10,39,51,.2);color:var(--muted);
+    padding:8px 16px;border-radius:30px;font-family:'Archivo';font-size:.8rem;cursor:pointer;transition:.2s;}
+  .btn-reset:hover{border-color:var(--coral);color:var(--coral);}
+  .weekblock{margin:26px 0;border:1px solid rgba(10,39,51,.1);border-radius:16px;overflow:hidden;background:#fff;}
+  .weekhead{background:linear-gradient(150deg,var(--deep),var(--mid));color:var(--foam);
+    padding:16px 22px;display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;flex-wrap:wrap;}
+  .weekhead h3{margin:0;color:var(--sand);font-family:'Fraunces';font-size:1.25rem;}
+  .weekhead .phase-tag{font-size:.72rem;letter-spacing:.06em;color:var(--kelp);text-transform:uppercase;font-weight:700;}
+  .weekhead .wk-progress{font-size:.8rem;color:var(--foam);opacity:.85;}
+  .weekhead .caret{transition:transform .25s;font-size:.8rem;}
+  .weekblock.collapsed .caret{transform:rotate(-90deg);}
+  .weekblock.collapsed .daygrid{display:none;}
+  .daygrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:0;}
+  .day{border-top:1px solid rgba(10,39,51,.1);border-right:1px solid rgba(10,39,51,.07);padding:16px 18px;}
+  .day.today{background:rgba(232,112,58,.07);box-shadow:inset 3px 0 0 var(--coral);}
+  .day.rest{background:rgba(10,39,51,.03);}
+  .day .dlabel{font-family:'Archivo';font-weight:700;font-size:.8rem;letter-spacing:.05em;
+    text-transform:uppercase;color:var(--mid);}
+  .day.today .dlabel::after{content:" · TODAY";color:var(--coral);}
+  .day .dtitle{font-family:'Fraunces';font-size:1.05rem;margin:2px 0 10px;color:var(--ink);}
+  .task{display:flex;align-items:flex-start;gap:9px;padding:5px 0;font-size:.88rem;cursor:pointer;user-select:none;}
+  .task input{margin-top:3px;width:16px;height:16px;accent-color:var(--current);cursor:pointer;flex-shrink:0;}
+  .task.checked span{text-decoration:line-through;color:var(--muted);}
+  .day-done-badge{display:inline-block;margin-top:8px;font-size:.7rem;font-weight:700;letter-spacing:.06em;
+    text-transform:uppercase;color:var(--kelp);opacity:0;transition:.2s;}
+  .day.complete .day-done-badge{opacity:1;}
+
+  footer{background:var(--abyss);color:var(--sand);padding:40px 0;text-align:center;font-size:.85rem;}
+  footer a{color:var(--kelp);}
+  .disc{font-size:.78rem;color:var(--muted);max-width:680px;margin:18px auto 0;line-height:1.5;}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="kicker">Galápagos · September 2026 · Darwin & Wolf prep</div>
+    <h1>Diving the <em>Current</em>.<br>A 12-Week Build.</h1>
+    <p class="sub">Legs and hips to hold position in surge, lungs that don't quit mid-stretch, and arms that haul the dive bag through three airports.</p>
+    <div class="meta-row">
+      <span class="chip">4+ days / week</span>
+      <span class="chip">Home weights + travel calisthenics</span>
+      <span class="chip">Sedentary → ready</span>
+      <span class="chip">~12 weeks runway</span>
+    </div>
+  </div>
+</header>
+
+<nav><div class="wrap">
+  <a href="#read">Read first</a>
+  <a href="#legs">Legs & hips</a>
+  <a href="#breath">Breath & engine</a>
+  <a href="#arms">Arms & grip</a>
+  <a href="#core">Core & trim</a>
+  <a href="#schedule">Weekly plan</a>
+  <a href="#ramp">12-week ramp</a>
+  <a href="#calendar">Calendar</a>
+</div></nav>
+
+<section id="read">
+  <div class="wrap">
+    <span class="eyebrow">Before the first rep</span>
+    <h2>The honest part about currents</h2>
+    <p class="lead">Strength matters, but in Galápagos the goal is rarely to out-swim a current. At Darwin and Wolf the standard play is to drop fast, get low, tuck behind structure or use a reef hook, and let the current pass over you while you watch the hammerheads. The diver who burns through a tank fighting the flow is making a technique error, not just a fitness one.</p>
+    <div class="callout">
+      <h3>So this program trains two things at once</h3>
+      <p><strong>1. The fitness:</strong> stronger legs/hips so finning costs you less effort, and a bigger aerobic engine so you don't go into oxygen debt during the exertion spikes that <em>do</em> happen — negative entries, swimming into a hook position, crossing a channel.</p>
+      <p><strong>2. The breathing.</strong> Losing your breath in current stretches is largely CO₂ build-up from over-exertion plus shallow rushed breathing. The aerobic + breath-control work below targets exactly that. On the boat, also focus on slow nasal-style exhales, good trim, and efficient flutter/frog kicks — ask your divemaster about reef-hook technique for Darwin/Wolf.</p>
+    </div>
+    <p><strong>How to read the cards:</strong> every exercise is tagged <span class="tag both" style="font-size:.6rem;padding:3px 8px;">BOTH</span> (works either way), <span class="tag weights" style="font-size:.6rem;padding:3px 8px;">WEIGHTS</span>, or <span class="tag calis" style="font-size:.6rem;padding:3px 8px;">TRAVEL</span> (no equipment). Each has plain-language form cues, a rep prescription, a video link, and — where useful — a travel swap for when the dumbbells aren't with you.</p>
+  </div>
+</section>
+
+<section id="legs">
+  <div class="wrap">
+    <span class="eyebrow">Goal 1 · Holding position</span>
+    <h2>Legs &amp; hips</h2>
+    <p class="lead">Quads, glutes, hamstrings and calves are your finning engine. We build strength first, then add the single-leg and explosive work that translates to controlling your body in moving water.</p>
+
+    <div class="ex" id="ex-goblet">
+      <div class="ex-head"><h3>Goblet Squat</h3><span class="tag weights">Weights</span></div>
+      <p>The foundation. Holding the weight at your chest keeps you upright and is gentle on the lower back — ideal starting from sedentary.</p>
+      <p class="cue"><strong>Cues:</strong></p>
+      <ul>
+        <li>Hold one dumbbell vertically against your chest, both hands cupping the top end.</li>
+        <li>Feet a bit wider than shoulders, toes turned out slightly.</li>
+        <li>Sit down and back like lowering into a chair; knees track over toes, don't cave inward.</li>
+        <li>Go until thighs are about parallel to the floor, chest tall. Drive up through your heels.</li>
+      </ul>
+      <span class="prescription">3 sets × 10–12 reps</span>
+      <div class="travel-note"><strong>Travel swap →</strong> Bodyweight squat, or slow tempo (3 seconds down) to make it harder without weight.</div>
+      <a class="vid" href="https://www.youtube.com/watch?v=BR4tlEE_A98" target="_blank" rel="noopener">Watch: Goblet Squat form</a>
+    </div>
+
+    <div class="ex" id="ex-lunge">
+      <div class="ex-head"><h3>Reverse Lunge</h3><span class="tag both">Both</span></div>
+      <p>Single-leg strength and balance — the closest dry-land match to stabilizing yourself in current. Stepping backward is knee-friendly.</p>
+      <p class="cue"><strong>Cues:</strong></p>
+      <ul>
+        <li>Stand tall, optionally a dumbbell in each hand at your sides.</li>
+        <li>Step one foot straight back, lower until both knees bend ~90°, back knee hovers above the floor.</li>
+        <li>Keep your torso upright; push through the front heel to stand back up.</li>
+        <li>Alternate legs, or do all reps on one side then switch.</li>
+      </ul>
+      <span class="prescription">3 sets × 8–10 per leg</span>
+      <div class="travel-note"><strong>Travel swap →</strong> Same movement, no weights. Add a small hop at the top for a challenge once strong.</div>
+      <a class="vid" href="https://www.youtube.com/watch?v=xrPteyL_INg" target="_blank" rel="noopener">Watch: Reverse Lunge form</a>
+    </div>
+
+    <div class="ex" id="ex-rdl">
+      <div class="ex-head"><h3>Romanian Deadlift (RDL)</h3><span class="tag weights">Weights</span></div>
+      <p>Targets the hamstrings and glutes — the back-of-leg power for your kick. Uses the bar.</p>
+      <p class="cue"><strong>Cues:</strong></p>
+      <ul>
+        <li>Hold the bar (or dumbbells) in front of your thighs, knees softly bent.</li>
+        <li>Push your hips backward — like closing a door with your butt — letting the bar slide down your legs.</li>
+        <li>Keep your back flat, never rounded. Feel the stretch in your hamstrings; stop around mid-shin.</li>
+        <li>Squeeze your glutes to stand back up. Slow and controlled.</li>
+      </ul>
+      <span class="prescription">3 sets × 8–10 reps</span>
+      <div class="travel-note"><strong>Travel swap →</strong> Single-leg RDL with no weight — balance on one leg, hinge forward reaching the other leg straight back. Brutal for balance, perfect for diving.</div>
+      <a class="vid" href="https://www.youtube.com/watch?v=hQgFixeXdZo" target="_blank" rel="noopener">Watch: Romanian Deadlift form</a>
+    </div>
+
+    <div class="ex" id="ex-bulgarian">
+      <div class="ex-head"><h3>Bulgarian Split Squat</h3><span class="tag both">Both</span></div>
+      <p>The single best single-leg strength builder. Tough — introduce it around week 4.</p>
+      <p class="cue"><strong>Cues:</strong></p>
+      <ul>
+        <li>Stand a couple feet in front of a chair/couch; rest the top of one foot on it behind you.</li>
+        <li>Lower straight down on the front leg until the thigh is about parallel.</li>
+        <li>Front knee tracks over the foot; keep your weight in the front heel.</li>
+        <li>Hold dumbbells at your sides to add load.</li>
+      </ul>
+      <span class="prescription">3 sets × 8 per leg</span>
+      <div class="travel-note"><strong>Travel swap →</strong> Bodyweight only — a hotel chair works fine.</div>
+      <a class="vid" href="https://www.youtube.com/watch?v=2C-uNgKwPLE" target="_blank" rel="noopener">Watch: Bulgarian Split Squat</a>
+    </div>
+
+    <div class="ex" id="ex-calf">
+      <div class="ex-head"><h3>Calf Raises</h3><span class="tag both">Both</span></div>
+      <p>Your calves do enormous work finning. Easy to do anywhere, anytime.</p>
+      <p class="cue"><strong>Cues:</strong></p>
+      <ul>
+        <li>Stand with the balls of your feet on the edge of a step, heels hanging off.</li>
+        <li>Rise as high as possible onto your toes, pause, lower slowly below the step level for a stretch.</li>
+        <li>Hold a dumbbell in one hand (other on a wall for balance) to load it.</li>
+      </ul>
+      <span class="prescription">3 sets × 15–20 reps</span>
+      <div class="travel-note"><strong>Travel swap →</strong> Identical with bodyweight; do single-leg to increase difficulty.</div>
+      <a class="vid" href="https://www.youtube.com/watch?v=-M4-G8p8fmc" target="_blank" rel="noopener">Watch: Calf Raise form</a>
+    </div>
+  </div>
+</section>
+
+<section id="breath">
+  <div class="wrap">
+    <span class="eyebrow">Goal 2 · Not running out of air</span>
+    <h2>Breath &amp; engine</h2>
+    <p class="lead">This is the piece that directly fixes "losing my breath in current stretches." You're building aerobic capacity so exertion costs you less oxygen, plus training calm, deep breathing patterns. Do at least two of these sessions a week.</p>
+
+    <div class="callout">
+      <h3>The single most transferable workout: Zone 2 cardio</h3>
+      <p>Steady effort where you can still hold a conversation but wouldn't want to sing — about 30–45 minutes. Brisk walking on an incline, cycling, swimming, rowing, or jogging all count. This raises the aerobic base that keeps you from gassing out. <strong>If you do nothing else for fitness, do this 2–3× a week.</strong></p>
+    </div>
+
+    <div class="ex" id="ex-swim">
+      <div class="ex-head"><h3>Lap Swimming (best option)</h3><span class="tag calis">Travel</span></div>
+      <p>Nothing matches the specificity of swimming for dive fitness — same breathing rhythm, same muscles, same horizontal position.</p>
+      <p class="cue"><strong>How:</strong></p>
+      <ul>
+        <li>Freestyle or breaststroke, steady pace, breathing on a rhythm (e.g. every 3 strokes).</li>
+        <li>Build from 20 to 40 minutes continuous over the weeks.</li>
+        <li>Add interval sets later: swim hard one length, easy the next — this mimics current exertion spikes.</li>
+      </ul>
+      <span class="prescription">2× per week, 20–40 min</span>
+      <a class="vid" href="https://www.youtube.com/watch?v=5HLW2AI1Ink" target="_blank" rel="noopener">Watch: Freestyle breathing technique</a>
+    </div>
+
+    <div class="ex" id="ex-interval">
+      <div class="ex-head"><h3>Interval Cardio (HIIT-lite)</h3><span class="tag calis">Travel</span></div>
+      <p>Trains your body to recover fast between bursts of effort — exactly what current diving demands.</p>
+      <p class="cue"><strong>Simple version:</strong></p>
+      <ul>
+        <li>30 seconds hard effort (fast jog, bike sprint, or burpees), then 90 seconds easy.</li>
+        <li>Repeat 6–8 rounds. Total ~15 minutes plus warm-up.</li>
+        <li>Focus on bringing your breathing back under control during the easy phase — that's the skill.</li>
+      </ul>
+      <span class="prescription">1× per week</span>
+      <a class="vid" href="https://www.youtube.com/watch?v=cZnsLVArIt8" target="_blank" rel="noopener">Watch: Beginner HIIT structure</a>
+    </div>
+
+    <div class="ex" id="ex-box">
+      <div class="ex-head"><h3>Box Breathing / Breath Control</h3><span class="tag calis">Travel</span></div>
+      <p>A daily 5-minute drill to train slow, deep, controlled breathing — the calm you want underwater.</p>
+      <p class="cue"><strong>How:</strong></p>
+      <ul>
+        <li>Inhale slowly through the nose for 4 counts.</li>
+        <li>Hold for 4 counts.</li>
+        <li>Exhale slowly for 4 counts (longer is even better — try 6).</li>
+        <li>Hold empty for 4 counts. Repeat for 5 minutes.</li>
+      </ul>
+      <span class="prescription">Daily, 5 min</span>
+      <div class="travel-note"><strong>Why it helps →</strong> A long, relaxed exhale is what flushes CO₂ and stops the panicky "can't catch my breath" feeling. Practicing dry makes it automatic wet. <em>Never practice breath-holds in or under water alone.</em></div>
+      <a class="vid" href="https://www.youtube.com/watch?v=tEmt1Znux58" target="_blank" rel="noopener">Watch: Box breathing</a>
+    </div>
+  </div>
+</section>
+
+<section id="arms">
+  <div class="wrap">
+    <span class="eyebrow">Goal 3 · The dive bag</span>
+    <h2>Arms &amp; grip</h2>
+    <p class="lead">Lifting heavy luggage and tanks is about pulling strength, shoulder stability, and grip — not biceps curls. Here's what actually carries the bag.</p>
+
+    <div class="ex" id="ex-row">
+      <div class="ex-head"><h3>Bent-Over Row</h3><span class="tag weights">Weights</span></div>
+      <p>The number-one luggage-lifting exercise. Builds the whole back and arms in the exact pulling pattern of hauling a bag off a carousel.</p>
+      <p class="cue"><strong>Cues:</strong></p>
+      <ul>
+        <li>Hinge forward at the hips (back flat), bar or dumbbells hanging at arm's length.</li>
+        <li>Pull the weight to your lower ribs, squeezing your shoulder blades together.</li>
+        <li>Lower under control. Don't yank with your lower back.</li>
+      </ul>
+      <span class="prescription">3 sets × 10 reps</span>
+      <div class="travel-note"><strong>Travel swap →</strong> Inverted rows — lie under a sturdy table and pull your chest to the edge. Or use a backpack full of books.</div>
+      <a class="vid" href="https://www.youtube.com/watch?v=9efgcAjQe7E" target="_blank" rel="noopener">Watch: Bent-Over Row form</a>
+    </div>
+
+    <div class="ex" id="ex-press">
+      <div class="ex-head"><h3>Overhead Press</h3><span class="tag weights">Weights</span></div>
+      <p>For hoisting bags into overhead bins. Builds shoulder strength and stability.</p>
+      <p class="cue"><strong>Cues:</strong></p>
+      <ul>
+        <li>Dumbbells or bar at shoulder height, feet shoulder-width, core braced.</li>
+        <li>Press straight overhead until arms lock out; keep ribs down, don't arch your back.</li>
+        <li>Lower under control to the shoulders.</li>
+      </ul>
+      <span class="prescription">3 sets × 8–10 reps</span>
+      <div class="travel-note"><strong>Travel swap →</strong> Pike push-ups — hips piked high, lower your head toward the floor between your hands.</div>
+      <a class="vid" href="https://www.youtube.com/watch?v=qEwKCR5JCog" target="_blank" rel="noopener">Watch: Overhead Press form</a>
+    </div>
+
+    <div class="ex" id="ex-pushup">
+      <div class="ex-head"><h3>Push-Ups</h3><span class="tag calis">Travel</span></div>
+      <p>The universal upper-body builder — chest, shoulders, triceps, core. Scalable from knees to full.</p>
+      <p class="cue"><strong>Cues:</strong></p>
+      <ul>
+        <li>Hands slightly wider than shoulders, body in one straight line head to heels.</li>
+        <li>Lower until your chest is just above the floor, elbows at roughly 45° to your body.</li>
+        <li>Push back up. Too hard? Drop to knees or push from an elevated surface (counter/wall).</li>
+      </ul>
+      <span class="prescription">3 sets × as many as good form allows</span>
+      <a class="vid" href="https://www.youtube.com/watch?v=IODxDxX7oi4" target="_blank" rel="noopener">Watch: Push-Up form</a>
+    </div>
+
+    <div class="ex" id="ex-farmer">
+      <div class="ex-head"><h3>Farmer's Carry</h3><span class="tag both">Both</span></div>
+      <p>The most literal luggage-training exercise: pick up heavy things and walk. Builds crushing grip strength and a stable core.</p>
+      <p class="cue"><strong>Cues:</strong></p>
+      <ul>
+        <li>Hold a heavy dumbbell in each hand at your sides.</li>
+        <li>Stand tall, shoulders back, and walk 30–40 steps with control.</li>
+        <li>Grip hard the whole way. Rest, repeat.</li>
+      </ul>
+      <span class="prescription">3 rounds × 30–40 steps</span>
+      <div class="travel-note"><strong>Travel swap →</strong> Two heavy backpacks, water jugs, or — fittingly — your packed dive bags.</div>
+      <a class="vid" href="https://www.youtube.com/watch?v=Fkzk_RqlYig" target="_blank" rel="noopener">Watch: Farmer's Carry</a>
+    </div>
+  </div>
+</section>
+
+<section id="core">
+  <div class="wrap">
+    <span class="eyebrow">The quiet hero</span>
+    <h2>Core &amp; trim</h2>
+    <p class="lead">A strong core is what lets you hold horizontal trim and stay stable when current pushes you around. All bodyweight — do these anywhere, twice a week.</p>
+
+    <div class="ex" id="ex-plank">
+      <div class="ex-head"><h3>Plank</h3><span class="tag calis">Travel</span></div>
+      <p class="cue"><strong>Cues:</strong> Forearms and toes on the floor, body in one straight line, squeeze glutes and abs. Don't let hips sag or pike. Breathe normally.</p>
+      <span class="prescription">3 sets × 30–60 sec hold</span>
+      <a class="vid" href="https://www.youtube.com/watch?v=pSHjTRCQxIw" target="_blank" rel="noopener">Watch: Plank form</a>
+    </div>
+
+    <div class="ex" id="ex-birddog">
+      <div class="ex-head"><h3>Bird Dog</h3><span class="tag calis">Travel</span></div>
+      <p class="cue"><strong>Cues:</strong> On hands and knees, extend opposite arm and leg straight out, hold briefly, return. Keep hips level — no twisting. This directly trains the anti-rotation stability you use to hold trim.</p>
+      <span class="prescription">3 sets × 8 per side</span>
+      <a class="vid" href="https://www.youtube.com/watch?v=wiFNA3sqjCA" target="_blank" rel="noopener">Watch: Bird Dog form</a>
+    </div>
+
+    <div class="ex" id="ex-superman">
+      <div class="ex-head"><h3>Superman Hold</h3><span class="tag calis">Travel</span></div>
+      <p class="cue"><strong>Cues:</strong> Lie face down, lift arms, chest and legs off the floor, hold. Strengthens the lower back that keeps you arched and streamlined while finning.</p>
+      <span class="prescription">3 sets × 20–30 sec</span>
+      <a class="vid" href="https://www.youtube.com/watch?v=z6PJMT2y8GQ" target="_blank" rel="noopener">Watch: Superman form</a>
+    </div>
+  </div>
+</section>
+
+<section id="schedule">
+  <div class="wrap">
+    <span class="eyebrow">Putting it together</span>
+    <h2>A weekly plan (4 days)</h2>
+    <p class="lead">A simple split that hits everything without overlap. Adjust days to your life — the order matters more than which calendar day.</p>
+    <div class="tablewrap">
+    <table>
+      <tr><th>Day</th><th>Focus</th><th>Main work</th></tr>
+      <tr><td><strong>Day 1</strong></td><td>Lower strength</td><td><a href="#ex-goblet">Goblet Squat</a> · <a href="#ex-lunge">Reverse Lunge</a> · <a href="#ex-calf">Calf Raise</a> · <a href="#ex-plank">Plank</a></td></tr>
+      <tr><td><strong>Day 2</strong></td><td>Engine + breath</td><td><a href="#ex-swim">Zone 2 cardio or swim 30 min</a> · <a href="#ex-box">Box breathing</a></td></tr>
+      <tr><td><strong>Day 3</strong></td><td>Upper / luggage</td><td><a href="#ex-row">Bent-Over Row</a> · <a href="#ex-press">Overhead Press</a> · <a href="#ex-pushup">Push-Ups</a> · <a href="#ex-farmer">Farmer's Carry</a></td></tr>
+      <tr><td><strong>Day 4</strong></td><td>Lower + core</td><td><a href="#ex-rdl">RDL</a> · <a href="#ex-bulgarian">Bulgarian Split Squat</a> · <a href="#ex-birddog">Bird Dog</a> · <a href="#ex-superman">Superman</a></td></tr>
+      <tr><td><em>Optional</em></td><td>Engine</td><td><a href="#ex-swim">Swim</a> or <a href="#ex-interval">interval cardio</a> + <a href="#ex-farmer">Farmer's Carry</a></td></tr>
+    </table>
+    </div>
+    <div class="callout">
+      <h3>Travel weeks</h3>
+      <p>When you're away from the dumbbells, swap to the <strong>TRAVEL</strong> versions on every card and keep the same 4-day rhythm. Squats, lunges, push-ups, rows under a table, planks, carries with your bags, and a swim or jog wherever you are will hold all your progress. Box breathing every day regardless.</p>
+    </div>
+  </div>
+</section>
+
+<section id="ramp">
+  <div class="wrap">
+    <span class="eyebrow">Don't skip this</span>
+    <h2>The 12-week ramp</h2>
+    <p class="lead">Starting sedentary, the biggest risk is doing too much too soon and getting hurt before September. Progress in phases — earn each jump.</p>
+    <div class="phase">
+      <div class="phasecard">
+        <div class="wk">1–3</div>
+        <h4>Groove the patterns</h4>
+        <p>Bodyweight or light weights only. Learn every movement. 2 sets, easy reps. Build the habit and start Zone 2 cardio. Expect soreness; that's normal.</p>
+      </div>
+      <div class="phasecard">
+        <div class="wk">4–7</div>
+        <h4>Build strength</h4>
+        <p>Add weight to the dumbbell/bar lifts, move to 3 sets. Introduce Bulgarian split squats. Push swim/cardio toward 35–40 min. This is where strength really climbs.</p>
+      </div>
+      <div class="phasecard">
+        <div class="wk">8–10</div>
+        <h4>Add power & intervals</h4>
+        <p>Heavier loads, lower reps on main lifts. Add interval cardio and hard/easy swim sets to train recovery between exertion spikes — the current-specific adaptation.</p>
+      </div>
+      <div class="phasecard">
+        <div class="wk">11–12</div>
+        <h4>Sharpen & taper</h4>
+        <p>Maintain, don't max out. Keep movement quality high, prioritize swimming and breath work. Arrive in Galápagos strong and fresh, not beaten up.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <h3>Two rules that matter most</h3>
+      <p><strong>1. Consistency beats intensity.</strong> Four steady weeks of moderate work crush one brutal week followed by quitting. <strong>2. Progress slowly.</strong> Add a little weight or a rep only when the current level feels manageable with good form. Sharp pain = stop; muscle soreness = fine.</p>
+    </div>
+  </div>
+</section>
+
+
+<section id="calendar">
+  <div class="wrap">
+    <span class="eyebrow">Your dated plan · starts Mon Jun 8</span>
+    <h2>Training calendar &amp; tracker</h2>
+    <p class="lead">Twelve weeks, day by day, Jun 8 through Aug 30 — leaving early September to taper before the boat. Tick each exercise as you finish it; your progress saves automatically. Tap a week header to collapse it.</p>
+    <div class="cal-controls">
+      <div class="progress-wrap">
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="progress-label" id="progressLabel">Loading your progress…</div>
+      </div>
+      <button class="btn-reset" id="resetBtn">Reset all progress</button>
+    </div>
+    <div id="calRoot"></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>Built for the Galápagos · M/V liveaboard · September 2026 🦈</p>
+    <p class="disc">This is general fitness information, not medical advice. Coming from a sedentary base, it's worth a quick check-in with a doctor before starting a new program, especially given the demands of remote liveaboard diving. Stop any movement that causes sharp or joint pain and get proper in-person coaching on form if you can — a session or two with a trainer early on pays off for years. Never practice breath-holding in water without trained supervision.</p>
+  </div>
+</footer>
+
+
+<script>
+const CAL_DATA = [{"week": 1, "range": "Jun 08 \u2013 Jun 14", "phase": "Phase 1 \u00b7 Groove the patterns", "days": [{"date": "2026-06-08", "label": "Mon Jun 08", "title": "Lower strength", "items": ["Goblet Squat \u2014 2 sets \u00d7 10\u201312", "Reverse Lunge \u2014 2 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 2 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-06-09", "label": "Tue Jun 09", "title": "Engine + breath", "items": ["Swim 20 min + Box breathing 5 min"]}, {"date": "2026-06-10", "label": "Wed Jun 10", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 2 sets \u00d7 10", "Overhead Press \u2014 2 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-06-11", "label": "Thu Jun 11", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 2 sets \u00d7 8\u201310", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-06-12", "label": "Fri Jun 12", "title": "Engine (optional)", "items": ["Zone 2 cardio 30\u201345 min"]}, {"date": "2026-06-13", "label": "Sat Jun 13", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-06-14", "label": "Sun Jun 14", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 2, "range": "Jun 15 \u2013 Jun 21", "phase": "Phase 1 \u00b7 Groove the patterns", "days": [{"date": "2026-06-15", "label": "Mon Jun 15", "title": "Lower strength", "items": ["Goblet Squat \u2014 2 sets \u00d7 10\u201312", "Reverse Lunge \u2014 2 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 2 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-06-16", "label": "Tue Jun 16", "title": "Engine + breath", "items": ["Swim 20 min + Box breathing 5 min"]}, {"date": "2026-06-17", "label": "Wed Jun 17", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 2 sets \u00d7 10", "Overhead Press \u2014 2 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-06-18", "label": "Thu Jun 18", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 2 sets \u00d7 8\u201310", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-06-19", "label": "Fri Jun 19", "title": "Engine (optional)", "items": ["Zone 2 cardio 30\u201345 min"]}, {"date": "2026-06-20", "label": "Sat Jun 20", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-06-21", "label": "Sun Jun 21", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 3, "range": "Jun 22 \u2013 Jun 28", "phase": "Phase 1 \u00b7 Groove the patterns", "days": [{"date": "2026-06-22", "label": "Mon Jun 22", "title": "Lower strength", "items": ["Goblet Squat \u2014 2 sets \u00d7 10\u201312", "Reverse Lunge \u2014 2 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 2 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-06-23", "label": "Tue Jun 23", "title": "Engine + breath", "items": ["Swim 20 min + Box breathing 5 min"]}, {"date": "2026-06-24", "label": "Wed Jun 24", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 2 sets \u00d7 10", "Overhead Press \u2014 2 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-06-25", "label": "Thu Jun 25", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 2 sets \u00d7 8\u201310", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-06-26", "label": "Fri Jun 26", "title": "Engine (optional)", "items": ["Zone 2 cardio 30\u201345 min"]}, {"date": "2026-06-27", "label": "Sat Jun 27", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-06-28", "label": "Sun Jun 28", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 4, "range": "Jun 29 \u2013 Jul 05", "phase": "Phase 2 \u00b7 Build strength", "days": [{"date": "2026-06-29", "label": "Mon Jun 29", "title": "Lower strength", "items": ["Goblet Squat \u2014 3 sets \u00d7 10\u201312", "Reverse Lunge \u2014 3 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 3 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-06-30", "label": "Tue Jun 30", "title": "Engine + breath", "items": ["Swim 35\u201340 min + Box breathing"]}, {"date": "2026-07-01", "label": "Wed Jul 01", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 3 sets \u00d7 10", "Overhead Press \u2014 3 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-07-02", "label": "Thu Jul 02", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 3 sets \u00d7 8\u201310", "Bulgarian Split Squat \u2014 3 \u00d7 8/leg", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-07-03", "label": "Fri Jul 03", "title": "Engine (optional)", "items": ["Zone 2 cardio 30\u201345 min"]}, {"date": "2026-07-04", "label": "Sat Jul 04", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-07-05", "label": "Sun Jul 05", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 5, "range": "Jul 06 \u2013 Jul 12", "phase": "Phase 2 \u00b7 Build strength", "days": [{"date": "2026-07-06", "label": "Mon Jul 06", "title": "Lower strength", "items": ["Goblet Squat \u2014 3 sets \u00d7 10\u201312", "Reverse Lunge \u2014 3 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 3 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-07-07", "label": "Tue Jul 07", "title": "Engine + breath", "items": ["Swim 35\u201340 min + Box breathing"]}, {"date": "2026-07-08", "label": "Wed Jul 08", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 3 sets \u00d7 10", "Overhead Press \u2014 3 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-07-09", "label": "Thu Jul 09", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 3 sets \u00d7 8\u201310", "Bulgarian Split Squat \u2014 3 \u00d7 8/leg", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-07-10", "label": "Fri Jul 10", "title": "Engine (optional)", "items": ["Zone 2 cardio 30\u201345 min"]}, {"date": "2026-07-11", "label": "Sat Jul 11", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-07-12", "label": "Sun Jul 12", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 6, "range": "Jul 13 \u2013 Jul 19", "phase": "Phase 2 \u00b7 Build strength", "days": [{"date": "2026-07-13", "label": "Mon Jul 13", "title": "Lower strength", "items": ["Goblet Squat \u2014 3 sets \u00d7 10\u201312", "Reverse Lunge \u2014 3 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 3 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-07-14", "label": "Tue Jul 14", "title": "Engine + breath", "items": ["Swim 35\u201340 min + Box breathing"]}, {"date": "2026-07-15", "label": "Wed Jul 15", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 3 sets \u00d7 10", "Overhead Press \u2014 3 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-07-16", "label": "Thu Jul 16", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 3 sets \u00d7 8\u201310", "Bulgarian Split Squat \u2014 3 \u00d7 8/leg", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-07-17", "label": "Fri Jul 17", "title": "Engine (optional)", "items": ["Zone 2 cardio 30\u201345 min"]}, {"date": "2026-07-18", "label": "Sat Jul 18", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-07-19", "label": "Sun Jul 19", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 7, "range": "Jul 20 \u2013 Jul 26", "phase": "Phase 2 \u00b7 Build strength", "days": [{"date": "2026-07-20", "label": "Mon Jul 20", "title": "Lower strength", "items": ["Goblet Squat \u2014 3 sets \u00d7 10\u201312", "Reverse Lunge \u2014 3 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 3 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-07-21", "label": "Tue Jul 21", "title": "Engine + breath", "items": ["Swim 35\u201340 min + Box breathing"]}, {"date": "2026-07-22", "label": "Wed Jul 22", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 3 sets \u00d7 10", "Overhead Press \u2014 3 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-07-23", "label": "Thu Jul 23", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 3 sets \u00d7 8\u201310", "Bulgarian Split Squat \u2014 3 \u00d7 8/leg", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-07-24", "label": "Fri Jul 24", "title": "Engine (optional)", "items": ["Zone 2 cardio 30\u201345 min"]}, {"date": "2026-07-25", "label": "Sat Jul 25", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-07-26", "label": "Sun Jul 26", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 8, "range": "Jul 27 \u2013 Aug 02", "phase": "Phase 3 \u00b7 Power & intervals", "days": [{"date": "2026-07-27", "label": "Mon Jul 27", "title": "Lower strength", "items": ["Goblet Squat \u2014 3 sets \u00d7 10\u201312", "Reverse Lunge \u2014 3 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 3 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-07-28", "label": "Tue Jul 28", "title": "Engine + breath", "items": ["Swim intervals (hard/easy) + Box breathing"]}, {"date": "2026-07-29", "label": "Wed Jul 29", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 3 sets \u00d7 10", "Overhead Press \u2014 3 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-07-30", "label": "Thu Jul 30", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 3 sets \u00d7 8\u201310", "Bulgarian Split Squat \u2014 3 \u00d7 8/leg", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-07-31", "label": "Fri Jul 31", "title": "Engine (optional)", "items": ["Interval cardio (HIIT-lite) \u00d76\u20138"]}, {"date": "2026-08-01", "label": "Sat Aug 01", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-08-02", "label": "Sun Aug 02", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 9, "range": "Aug 03 \u2013 Aug 09", "phase": "Phase 3 \u00b7 Power & intervals", "days": [{"date": "2026-08-03", "label": "Mon Aug 03", "title": "Lower strength", "items": ["Goblet Squat \u2014 3 sets \u00d7 10\u201312", "Reverse Lunge \u2014 3 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 3 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-08-04", "label": "Tue Aug 04", "title": "Engine + breath", "items": ["Swim intervals (hard/easy) + Box breathing"]}, {"date": "2026-08-05", "label": "Wed Aug 05", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 3 sets \u00d7 10", "Overhead Press \u2014 3 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-08-06", "label": "Thu Aug 06", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 3 sets \u00d7 8\u201310", "Bulgarian Split Squat \u2014 3 \u00d7 8/leg", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-08-07", "label": "Fri Aug 07", "title": "Engine (optional)", "items": ["Interval cardio (HIIT-lite) \u00d76\u20138"]}, {"date": "2026-08-08", "label": "Sat Aug 08", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-08-09", "label": "Sun Aug 09", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 10, "range": "Aug 10 \u2013 Aug 16", "phase": "Phase 3 \u00b7 Power & intervals", "days": [{"date": "2026-08-10", "label": "Mon Aug 10", "title": "Lower strength", "items": ["Goblet Squat \u2014 3 sets \u00d7 10\u201312", "Reverse Lunge \u2014 3 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 3 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-08-11", "label": "Tue Aug 11", "title": "Engine + breath", "items": ["Swim intervals (hard/easy) + Box breathing"]}, {"date": "2026-08-12", "label": "Wed Aug 12", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 3 sets \u00d7 10", "Overhead Press \u2014 3 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-08-13", "label": "Thu Aug 13", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 3 sets \u00d7 8\u201310", "Bulgarian Split Squat \u2014 3 \u00d7 8/leg", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-08-14", "label": "Fri Aug 14", "title": "Engine (optional)", "items": ["Interval cardio (HIIT-lite) \u00d76\u20138"]}, {"date": "2026-08-15", "label": "Sat Aug 15", "title": "Active / optional", "items": ["Swim or walk + Farmer's Carry"]}, {"date": "2026-08-16", "label": "Sun Aug 16", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 11, "range": "Aug 17 \u2013 Aug 23", "phase": "Phase 4 \u00b7 Sharpen & taper", "days": [{"date": "2026-08-17", "label": "Mon Aug 17", "title": "Lower strength", "items": ["Goblet Squat \u2014 3 sets \u00d7 10\u201312", "Reverse Lunge \u2014 3 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 3 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-08-18", "label": "Tue Aug 18", "title": "Engine + breath", "items": ["Easy swim 30 min + Box breathing"]}, {"date": "2026-08-19", "label": "Wed Aug 19", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 3 sets \u00d7 10", "Overhead Press \u2014 3 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-08-20", "label": "Thu Aug 20", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 3 sets \u00d7 8\u201310", "Bulgarian Split Squat \u2014 3 \u00d7 8/leg", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-08-21", "label": "Fri Aug 21", "title": "Engine (optional)", "items": ["Zone 2 cardio 30\u201345 min"]}, {"date": "2026-08-22", "label": "Sat Aug 22", "title": "Light movement", "items": ["Easy swim or walk"]}, {"date": "2026-08-23", "label": "Sun Aug 23", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}, {"week": 12, "range": "Aug 24 \u2013 Aug 30", "phase": "Phase 4 \u00b7 Sharpen & taper", "days": [{"date": "2026-08-24", "label": "Mon Aug 24", "title": "Lower strength", "items": ["Goblet Squat \u2014 3 sets \u00d7 10\u201312", "Reverse Lunge \u2014 3 sets \u00d7 8\u201310/leg", "Calf Raise \u2014 3 sets \u00d7 15\u201320", "Plank \u2014 3 \u00d7 30\u201360s"]}, {"date": "2026-08-25", "label": "Tue Aug 25", "title": "Engine + breath", "items": ["Easy swim 30 min + Box breathing"]}, {"date": "2026-08-26", "label": "Wed Aug 26", "title": "Upper / luggage", "items": ["Bent-Over Row \u2014 3 sets \u00d7 10", "Overhead Press \u2014 3 sets \u00d7 8\u201310", "Push-Ups \u2014 3 \u00d7 max good form", "Farmer's Carry \u2014 3 \u00d7 30\u201340 steps"]}, {"date": "2026-08-27", "label": "Thu Aug 27", "title": "Lower + core", "items": ["Romanian Deadlift \u2014 3 sets \u00d7 8\u201310", "Bulgarian Split Squat \u2014 3 \u00d7 8/leg", "Bird Dog \u2014 3 \u00d7 8/side", "Superman \u2014 3 \u00d7 20\u201330s"]}, {"date": "2026-08-28", "label": "Fri Aug 28", "title": "Engine (optional)", "items": ["Zone 2 cardio 30\u201345 min"]}, {"date": "2026-08-29", "label": "Sat Aug 29", "title": "Light movement", "items": ["Easy swim or walk"]}, {"date": "2026-08-30", "label": "Sun Aug 30", "title": "Rest", "items": ["Rest & recover \u00b7 light stretch"]}]}];
+const TODAY = "2026-06-08"; // reference "today" for highlighting; updates live below
+const STORE_KEY = "galapagos_progress_v1";
+let progress = {};
+
+function realToday(){
+  const d = new Date();
+  const z = n => String(n).padStart(2,'0');
+  return d.getFullYear()+"-"+z(d.getMonth()+1)+"-"+z(d.getDate());
+}
+const todayStr = realToday();
+
+async function loadProgress(){
+  try{
+    const r = await window.storage.get(STORE_KEY);
+    if(r && r.value) progress = JSON.parse(r.value);
+  }catch(e){ progress = {}; }
+  render();
+}
+async function saveProgress(){
+  try{ await window.storage.set(STORE_KEY, JSON.stringify(progress)); }
+  catch(e){ /* storage unavailable; session-only */ }
+}
+
+function taskId(date,i){ return date+"#"+i; }
+
+function totals(){
+  let total=0, done=0;
+  CAL_DATA.forEach(wk=>wk.days.forEach(d=>{
+    d.items.forEach((_,i)=>{ total++; if(progress[taskId(d.date,i)]) done++; });
+  }));
+  return {total,done};
+}
+
+function updateProgress(){
+  const {total,done}=totals();
+  const pct = total? Math.round(done/total*100):0;
+  document.getElementById('progressFill').style.width=pct+"%";
+  document.getElementById('progressLabel').textContent =
+    done+" of "+total+" exercises done · "+pct+"% through the program";
+}
+
+function dayComplete(d){
+  return d.items.every((_,i)=>progress[taskId(d.date,i)]);
+}
+
+function render(){
+  const root=document.getElementById('calRoot');
+  root.innerHTML='';
+  CAL_DATA.forEach(wk=>{
+    const block=document.createElement('div');
+    block.className='weekblock';
+    // collapse weeks that are fully in the past relative to real today
+    const lastDate = wk.days[wk.days.length-1].date;
+    if(lastDate < todayStr) block.classList.add('collapsed');
+
+    let wkTotal=0, wkDone=0;
+    wk.days.forEach(d=>d.items.forEach((_,i)=>{wkTotal++; if(progress[taskId(d.date,i)])wkDone++;}));
+
+    const head=document.createElement('div');
+    head.className='weekhead';
+    head.innerHTML='<div><h3>Week '+wk.week+' · '+wk.range+'</h3>'+
+      '<div class="phase-tag">'+wk.phase+'</div></div>'+
+      '<div style="text-align:right"><div class="wk-progress">'+wkDone+'/'+wkTotal+' done</div>'+
+      '<div class="caret">▼</div></div>';
+    head.onclick=()=>block.classList.toggle('collapsed');
+    block.appendChild(head);
+
+    const grid=document.createElement('div');
+    grid.className='daygrid';
+    wk.days.forEach(d=>{
+      const day=document.createElement('div');
+      day.className='day';
+      if(d.title==='Rest') day.classList.add('rest');
+      if(d.date===todayStr) day.classList.add('today');
+      if(dayComplete(d)) day.classList.add('complete');
+
+      let h='<div class="dlabel">'+d.label+'</div><div class="dtitle">'+d.title+'</div>';
+      d.items.forEach((item,i)=>{
+        const id=taskId(d.date,i);
+        const checked=progress[id]?'checked':'';
+        const cls=progress[id]?'task checked':'task';
+        h+='<label class="task '+(progress[id]?'checked':'')+'" data-id="'+id+'">'+
+           '<input type="checkbox" '+checked+'><span>'+item+'</span></label>';
+      });
+      h+='<div class="day-done-badge">✓ Day complete</div>';
+      day.innerHTML=h;
+
+      day.querySelectorAll('.task').forEach(lbl=>{
+        const id=lbl.getAttribute('data-id');
+        const box=lbl.querySelector('input');
+        box.addEventListener('change',()=>{
+          if(box.checked) progress[id]=true; else delete progress[id];
+          lbl.classList.toggle('checked',box.checked);
+          if(dayComplete(d)) day.classList.add('complete'); else day.classList.remove('complete');
+          // update week counter
+          let wd=0; wk.days.forEach(dd=>dd.items.forEach((_,j)=>{if(progress[taskId(dd.date,j)])wd++;}));
+          head.querySelector('.wk-progress').textContent=wd+'/'+wkTotal+' done';
+          updateProgress();
+          saveProgress();
+        });
+      });
+      grid.appendChild(day);
+    });
+    block.appendChild(grid);
+    root.appendChild(block);
+  });
+  updateProgress();
+}
+
+document.getElementById('resetBtn').addEventListener('click',async()=>{
+  if(confirm('Clear all checkmarks and start fresh?')){
+    progress={}; await saveProgress(); render();
+  }
+});
+
+loadProgress();
+</script>
+
+</body>
+</html>
